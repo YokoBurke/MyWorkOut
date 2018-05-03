@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="8dp"
+    tools:context="com.example.android.myworkout.MainActivity">
+
+    <TextView
+        android:textStyle="bold"
+        android:textSize="28sp"
+        android:paddingTop="40dp"
+        android:gravity="center_horizontal"
+        android:textColor="@android:color/black"
+        android:id="@+id/todays_date"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Mar 28, 2018"
+        />
+
+    <TextView
+        android:id="@+id/greeting_text"
+        android:layout_below="@id/todays_date"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:textColor="@android:color/black"
+        android:text="Let's register your hard work for today!"
+        />
+
+    <LinearLayout
+        android:id="@+id/the_form"
+        android:layout_below="@id/greeting_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+        <TextView
+            style="@style/CategoryStyle"
+            android:text="Weight as of Now"/>
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:orientation="vertical">
+            <EditText
+            style="@style/EditorFieldStyle"
+            android:hint="Weight"
+            android:id="@+id/text_weight"
+            android:inputType="number"/>
+            <TextView
+                android:id="@+id/label_weight_units"
+                android:text="lb"
+                android:inputType="numberDecimal"
+                style="@style/EditorUnitsStyle"/>
+        </RelativeLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <TextView
+            style="@style/CategoryStyle"
+            android:text="Select Activity"/>
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:orientation="vertical">
+            <Spinner
+                android:id="@+id/spinner_activity"
+                android:layout_height="48dp"
+                android:layout_width="wrap_content"
+                android:paddingRight="16dp"
+                android:spinnerMode="dropdown"/>
+        </LinearLayout>
+    </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                style="@style/CategoryStyle"
+                android:text="Activity Duration"/>
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:orientation="vertical">
+                <EditText
+                    style="@style/EditorFieldStyle"
+                    android:id="@+id/text_duration"
+                    android:inputType="number"/>
+                <TextView
+                    android:id="@+id/label_duration_units"
+                    android:text="minutes"
+                    style="@style/EditorUnitsStyle"/>
+            </RelativeLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                style="@style/CategoryStyle"
+                android:text="Distance"/>
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:orientation="vertical">
+                <EditText
+                    style="@style/EditorFieldStyle"
+                    android:id="@+id/text_distance"
+                    android:inputType="numberDecimal"/>
+                <TextView
+                    android:id="@+id/label_distance_units"
+                    android:text="miles"
+                    style="@style/EditorUnitsStyle"/>
+            </RelativeLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                style="@style/CategoryStyle"
+                android:text="Message"/>
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:orientation="vertical">
+                <EditText
+                    style="@style/EditorFieldStyle"
+                    android:maxLength="140"
+                    android:id="@+id/text_message"
+                    android:inputType="textMultiLine"/>
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:paddingTop="24dp"
+            android:orientation="horizontal">
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="send"
+                android:drawableLeft="@drawable/ic_email_white_18dp" />
+        </LinearLayout>
+    </LinearLayout>
+
+
+    <android.support.design.widget.FloatingActionButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:src="@drawable/ic_directions_run_white_24dp"
+        android:id="@+id/fab" />
+
+
+
+</RelativeLayout>

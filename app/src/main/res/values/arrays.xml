@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="array_activity_options">
+        <item>@string/activity_walk</item>
+        <item>@string/activity_run</item>
+        <item>@string/activity_runandwalk</item>
+    </string-array>
+
+</resources>

@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">My Walk Tracker</string>
+
+    <string name="message_1">Are you having a great day?</string>
+    <string name="message_2">I think the dinner tonight should be Tonkatsu!</string>
+    <string name="message_3">Wait, who is picking up Mika today?</string>
+    <string name="message_4">Your wifey loves you.</string>
+    <string name="message_5">Chus, chus, chus from Yo chan &amp; Mi chan.</string>
+    <string name="message_6">You deserves an ice cold beer tonight.</string>
+    <string name="message_7">Homework.  Research what "Furoshiki" means.</string>
+    <string name="message_8">You and your family should smoke something soon.</string>
+    <string name="message_9">I am just a phone, but my mom drives me CRAZY!!</string>
+    <string name="message_10">What time is the dinner tonight?</string>
+
+    <string name="activity_walk">Walk</string>
+    <string name="activity_run">Run</string>
+    <string name="activity_runandwalk">Run and Walk</string>
+</resources>
