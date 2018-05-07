@@ -20,5 +20,9 @@
             </intent-filter>
         </activity>
     </application>
+    <provider
+        android:name=".data.WorkoutProvider"
+        android:authorities="com.example.android.workout"
+        android:exported="false" />
 
 </manifest>

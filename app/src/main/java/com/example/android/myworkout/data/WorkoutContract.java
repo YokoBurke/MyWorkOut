@@ -1,5 +1,6 @@
 package com.example.android.myworkout.data;
 
+import android.net.Uri;
 import android.provider.BaseColumns;
 
 /**
@@ -10,6 +11,11 @@ public class WorkoutContract {
 
     //constructor
     private WorkoutContract() {};
+
+    public static final String CONTENT_AUTHORITY = "com.example.android.workout";
+    public static final Uri BASE_CONTENT_URI = Uri.parse("content://" + CONTENT_AUTHORITY);
+    public static final String PATH_WORKOUT = "workout";
+    public static final Uri CONTENT_URI = Uri.withAppendedPath(BASE_CONTENT_URI, PATH_WORKOUT);
 
     public static final class WorkoutEntry implements BaseColumns {
 
