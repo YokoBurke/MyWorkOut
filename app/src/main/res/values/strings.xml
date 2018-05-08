@@ -15,4 +15,6 @@
     <string name="activity_walk">Walk</string>
     <string name="activity_run">Run</string>
     <string name="activity_runandwalk">Run and Walk</string>
+
+    <string name="empty_title_text">You have not entered any data yet.</string>
 </resources>

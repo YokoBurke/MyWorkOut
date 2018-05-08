@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="8dp"
+    android:orientation="vertical">
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
+<TextView
+    android:id="@+id/list_date"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    tools:text="05/07/2018"/>
+    <TextView
+        android:id="@+id/list_weather"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="Sunny"/>
+
+</LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+    <TextView
+        android:id="@+id/list_activity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="Run and Walk"/>
+    <TextView
+        android:id="@+id/list_duration"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="30 min"/>
+    <TextView
+        android:id="@+id/list_distance"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="2.55 miles"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Current Weight: "/>
+        <TextView
+            android:id="@+id/list_weight"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="100.05 lb"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+    <TextView
+        android:id="@+id/list_message"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="I worked so hard today"/>
+    </LinearLayout>
+</LinearLayout>
