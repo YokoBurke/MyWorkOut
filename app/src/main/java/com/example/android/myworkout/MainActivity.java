@@ -2,7 +2,7 @@ package com.example.android.myworkout;
 
 import android.content.ContentValues;
 import android.content.Intent;
-import android.database.sqlite.SQLiteDatabase;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
@@ -18,7 +18,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.android.myworkout.data.WorkoutContract;
-import com.example.android.myworkout.data.WorkoutDbHelper;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -87,9 +86,8 @@ public class MainActivity extends AppCompatActivity {
         DateFormat todayFormat = new SimpleDateFormat("MM/dd/yyyy");
         String today = todayFormat.format(currentTime);
 
-        WorkoutDbHelper mDbHelper = new WorkoutDbHelper(this);
-
-        SQLiteDatabase db = mDbHelper.getWritableDatabase();
+        //WorkoutDbHelper mDbHelper = new WorkoutDbHelper(this);
+        //SQLiteDatabase db = mDbHelper.getWritableDatabase();
 
         ContentValues values = new ContentValues();
         values.put(WorkoutContract.WorkoutEntry.COLUMN_DATE, today);
@@ -99,15 +97,16 @@ public class MainActivity extends AppCompatActivity {
         values.put(WorkoutContract.WorkoutEntry.COLUMN_MESSAGE, messageString);
         values.put(WorkoutContract.WorkoutEntry.COLUMN_ACTIVITY, mActivity);
 
-        long newRowId = db.insert(WorkoutContract.WorkoutEntry.TABLE_NAME, null, values);
+        Uri newUri = getContentResolver().insert(WorkoutContract.WorkoutEntry.CONTENT_URI, values);
+        //long newRowId = db.insert(WorkoutContract.WorkoutEntry.TABLE_NAME, null, values);
 
         // Show a toast message depending on whether or not the insertion was successful
-        if (newRowId == -1) {
+        if (newUri == null) {
             // If the row ID is -1, then there was an error with insertion.
             Toast.makeText(this, "Error with saving data", Toast.LENGTH_SHORT).show();
         } else {
             // Otherwise, the insertion was successful and we can display a toast with the row ID.
-            Toast.makeText(this, "Your workout data saved with row id: " + newRowId, Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Your workout data is saved", Toast.LENGTH_SHORT).show();
         }
 
     }

@@ -1,7 +1,6 @@
 package com.example.android.myworkout;
 
 import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.TextView;
@@ -29,7 +28,7 @@ public class CatalogActivity extends AppCompatActivity {
 
     private void displayDatabaseInfo(){
 
-        SQLiteDatabase db = mDbHelper.getReadableDatabase();
+        //SQLiteDatabase db = mDbHelper.getReadableDatabase();
 
         String[] projection = {
                 WorkoutContract.WorkoutEntry.COLUMN_DATE,
@@ -41,15 +40,24 @@ public class CatalogActivity extends AppCompatActivity {
                 WorkoutContract.WorkoutEntry.COLUMN_MESSAGE
         };
 
-        Cursor cursor = db.query(
+        /** Cursor cursor = db.query(
                 WorkoutContract.WorkoutEntry.TABLE_NAME,
                 projection,
                 null, null, null, null, null);
+         */
+
+
+         Cursor cursor = getContentResolver().query(
+                 WorkoutContract.WorkoutEntry.CONTENT_URI,
+                    projection,
+                    null,
+                    null,
+                    null);
 
         TextView displayView = (TextView) findViewById(R.id.temporary_text);
 
         try {
-            displayView.setText("The workout table contains " + cursor.getCount() + " pets./n/n");
+            displayView.setText("The workout table contains " + cursor.getCount() + " pets." + "\n\n");
             displayView.append(WorkoutContract.WorkoutEntry.COLUMN_DATE + " - " +
                     WorkoutContract.WorkoutEntry.COLUMN_WEATHER + " - " +
                     WorkoutContract.WorkoutEntry.COLUMN_ACTIVITY + " - " +
@@ -82,7 +90,7 @@ public class CatalogActivity extends AppCompatActivity {
                         currentDistance + " - " +
                         currentWeight + " - " +
                         currentMessage));
-            }
+             }
             } finally {
                 cursor.close();
                         }
