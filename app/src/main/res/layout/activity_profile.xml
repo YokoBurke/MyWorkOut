@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:padding="8dp"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.android.myworkout.ProfileActivity">
+
+    <ImageView
+        android:id="@+id/pic_profile"
+        android:layout_width="80dp"
+        android:layout_height="120dp" />
+    <Button
+        android:id="@+id/browse_pic_profile"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="browse"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            style="@style/CategoryStyle"
+            android:text="Your Name: "/>
+        <EditText
+            android:id="@+id/name_profile"
+            style="@style/EditorFieldStyle" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            style="@style/CategoryStyle"
+            android:text="Your Spouse's Name "/>
+        <EditText
+            android:id="@+id/spouse_profile"
+            style="@style/EditorFieldStyle" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            style="@style/CategoryStyle"
+            android:text="Your Spouse's Name "/>
+        <EditText
+            android:id="@+id/spouse_email_profile"
+            android:inputType="textEmailAddress"
+            style="@style/EditorFieldStyle" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            style="@style/CategoryStyle"
+            android:text="Target Weight: "/>
+        <EditText
+            android:id="@+id/weight_profile"
+            android:inputType="number"
+            style="@style/EditorFieldStyle" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/updte_profile"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="update"/>
+
+</LinearLayout>

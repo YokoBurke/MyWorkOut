@@ -24,11 +24,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".CatalogActivity"></activity>
+        <activity android:name=".CatalogActivity" />
+
         <provider
             android:name=".data.WorkoutProvider"
             android:authorities="com.example.android.myworkout"
             android:exported="false" />
+
+        <activity android:name=".ProfileActivity"></activity>
     </application>
 
 </manifest>
