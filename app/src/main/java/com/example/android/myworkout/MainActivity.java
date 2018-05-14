@@ -8,6 +8,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -31,6 +32,8 @@ public class MainActivity extends AppCompatActivity {
     private EditText mDurationEditText;
     private EditText mDistanceEditText;
     private EditText mMessageEditText;
+
+
 
     private Spinner mActivitySpinner;
     private int mActivity = WorkoutContract.WorkoutEntry.ACTIVITY_RUNWALK;
@@ -118,6 +121,20 @@ public class MainActivity extends AppCompatActivity {
         getMenuInflater().inflate(R.menu.menu_catalog, menu);
         return true;
     }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        switch (item.getItemId()){
+            case R.id.update_profile:
+                Intent intent = new Intent(MainActivity.this, ProfileActivity.class);
+                startActivity(intent);
+                return true;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
 
     private void setUpSpinner() {
         ArrayAdapter activityAdapter = ArrayAdapter.createFromResource(this, R.array.array_activity_options, android.R.layout.simple_spinner_item);

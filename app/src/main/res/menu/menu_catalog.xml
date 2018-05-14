@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <item
-        android:id="@+id/action_insert_dummy_data"
+        android:id="@+id/update_profile"
         android:title="My Profile"
         app:showAsAction="never" />
 
