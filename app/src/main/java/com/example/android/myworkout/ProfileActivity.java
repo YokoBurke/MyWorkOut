@@ -48,6 +48,7 @@ public class ProfileActivity extends AppCompatActivity {
         mSpouseProfile = (EditText) findViewById(R.id.spouse_profile);
         mSpouseEmailProfile = (EditText) findViewById(R.id.spouse_email_profile);
         mWeightProfile = (EditText) findViewById(R.id.weight_profile);
+        mImageProfile = (ImageView) findViewById(R.id.pic_profile);
 
        sharedPreferences = getSharedPreferences(MyPreferences, Context.MODE_PRIVATE);
 
@@ -57,9 +58,15 @@ public class ProfileActivity extends AppCompatActivity {
             mSpouseEmailProfile.setText(sharedPreferences.getString(SpouseEmail, ""));
             mWeightProfile.setText(sharedPreferences.getString(MyGoal, ""));
 
+            String getURI = (sharedPreferences.getString(MyPic, ""));
+
+            Log.i("URI: ", getURI);
+            Log.i("URI: ", sharedPreferences.getString(Spouse, ""));
+            mImageProfile.setImageBitmap(getBitmapFromUri(Uri.parse(getURI)));
+
         }
 
-        mImageProfile = (ImageView) findViewById(R.id.pic_profile);
+
 
         final Button mUpdatePic = (Button) findViewById(R.id.browse_pic_profile);
         mUpdatePic.setOnClickListener(new View.OnClickListener() {
@@ -73,17 +80,19 @@ public class ProfileActivity extends AppCompatActivity {
         mUpdateProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v){
-                //ここにSaveしたらShared Preferenceに保存されるように入れる。　https://www.tutorialspoint.com/android/android_shared_preferences.htm
 
                 SharedPreferences.Editor editor = sharedPreferences.edit();
 
+                String myUri = mUriPic.toString();
                 editor.putString(Name, mNameProfile.getText().toString());
                 editor.putString(Spouse, mSpouseProfile.getText().toString());
                 editor.putString(SpouseEmail, mSpouseEmailProfile.getText().toString());
                 editor.putString(MyGoal, mWeightProfile.getText().toString());
-                editor.putString(MyPic, mUriPic.toString());
+                editor.putString(MyPic, myUri.toString());
+
+
                 editor.commit();
-                Toast.makeText(ProfileActivity.this, "Your Profile is Updated.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(ProfileActivity.this, "Your profile is now updated.", Toast.LENGTH_LONG).show();
 
             }
 
@@ -117,13 +126,16 @@ public class ProfileActivity extends AppCompatActivity {
     }
 
     public Bitmap getBitmapFromUri(Uri uri) {
-        //mImageProfile = (ImageView) findViewById(R.id.pic_profile);
+        // mImageProfile = (ImageView) findViewById(R.id.pic_profile);
         if (uri == null || uri.toString().isEmpty()){
             return null;
         }
 
-        int targetW = mImageProfile.getWidth();
-        int targetH = mImageProfile.getHeight();
+        //ここ、できたらあとで原因究明して、
+        int targetW = 80;
+        int targetH = 80;
+
+        Log.i("Image Size Is: ", targetW + " " + targetH );
 
         InputStream input = null;
 
@@ -142,7 +154,6 @@ public class ProfileActivity extends AppCompatActivity {
             int photoH = bmOptions.outHeight;
 
             int scaleFactor = Math.min(photoW / targetW, photoH / targetH);
-            Log.i(LOG_TAG, "I got this far 2");
             bmOptions.inJustDecodeBounds = false;
             bmOptions.inSampleSize = scaleFactor;
             bmOptions.inPurgeable = true;
