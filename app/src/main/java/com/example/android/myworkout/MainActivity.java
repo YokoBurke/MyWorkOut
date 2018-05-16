@@ -2,11 +2,13 @@ package com.example.android.myworkout;
 
 import android.content.ContentValues;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -32,11 +34,12 @@ public class MainActivity extends AppCompatActivity {
     private EditText mDurationEditText;
     private EditText mDistanceEditText;
     private EditText mMessageEditText;
-
-
+    private String todaysDate;
 
     private Spinner mActivitySpinner;
     private int mActivity = WorkoutContract.WorkoutEntry.ACTIVITY_RUNWALK;
+
+    private String emailMessage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
 
         TextView timeView = (TextView) findViewById(R.id.todays_date);
         currentTime = Calendar.getInstance().getTime();
-        String todaysDate = todayFormat.format(currentTime);
+        todaysDate = todayFormat.format(currentTime);
         timeView.setText(todaysDate);
 
         mWegithEditText = (EditText) findViewById(R.id.text_weight);
@@ -62,7 +65,10 @@ public class MainActivity extends AppCompatActivity {
         mSubmitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 insertWokoutData();
+                sendEmail();
+
             }
         } );
 
@@ -74,6 +80,33 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+    }
+
+    private void sendEmail() {
+
+        SharedPreferences thisSharedPreferences = getApplication().getSharedPreferences("MyPrefs", MODE_PRIVATE);
+        String spouseEmail = thisSharedPreferences.getString("emailKey", "");
+        Log.i("MainActivityemail: ", spouseEmail);
+
+        Intent emailIntent = new Intent(Intent.ACTION_SEND);
+
+        String[] TO = {spouseEmail};
+        emailIntent.setData(Uri.parse("mailto:"));
+        emailIntent.setType("text/plain");
+
+        emailIntent.putExtra(Intent.EXTRA_EMAIL, TO);
+        emailIntent.putExtra(Intent.EXTRA_SUBJECT, "My Workout: " + todaysDate);
+        emailIntent.putExtra(Intent.EXTRA_TEXT, emailMessage);
+
+        try {
+            //メールを起動
+            startActivity(Intent.createChooser(emailIntent, "send mail..."));
+            finish();
+            Log.i("Finished sending email", "");
+        } catch (android.content.ActivityNotFoundException ex) {
+            Toast.makeText(MainActivity.this, "There is no email client installed.", Toast.LENGTH_SHORT).show();;
+        }
+
     }
 
     private void insertWokoutData(){
@@ -99,6 +132,9 @@ public class MainActivity extends AppCompatActivity {
         values.put(WorkoutContract.WorkoutEntry.COLUMN_DURATION, duration);
         values.put(WorkoutContract.WorkoutEntry.COLUMN_MESSAGE, messageString);
         values.put(WorkoutContract.WorkoutEntry.COLUMN_ACTIVITY, mActivity);
+
+        emailMessage = "This is the summary of my workout" + "\r\n"
+                + "Distance: " + distance + "miles. \r\n";
 
         Uri newUri = getContentResolver().insert(WorkoutContract.WorkoutEntry.CONTENT_URI, values);
         //long newRowId = db.insert(WorkoutContract.WorkoutEntry.TABLE_NAME, null, values);

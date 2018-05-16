@@ -29,7 +29,7 @@ public class ProfileActivity extends AppCompatActivity {
     public static final String Spouse = "spouseKey";
     public static final String SpouseEmail = "emailKey";
     public static final String MyGoal = "goalKey";
-    public static final String MyPic = "picKey";  //URI
+    public static final String MyPic = "picKey";
 
     SharedPreferences sharedPreferences;
 
@@ -59,10 +59,7 @@ public class ProfileActivity extends AppCompatActivity {
             mWeightProfile.setText(sharedPreferences.getString(MyGoal, ""));
 
             String getURI = (sharedPreferences.getString(MyPic, ""));
-
-            Log.i("URI: ", getURI);
-            Log.i("URI: ", sharedPreferences.getString(Spouse, ""));
-            mImageProfile.setImageBitmap(getBitmapFromUri(Uri.parse(getURI)));
+           // mImageProfile.setImageBitmap(getBitmapFromUri(Uri.parse(getURI)));
 
         }
 
@@ -126,12 +123,12 @@ public class ProfileActivity extends AppCompatActivity {
     }
 
     public Bitmap getBitmapFromUri(Uri uri) {
-        // mImageProfile = (ImageView) findViewById(R.id.pic_profile);
+
         if (uri == null || uri.toString().isEmpty()){
             return null;
         }
 
-        //ここ、できたらあとで原因究明して、
+        //ここ、できたらあとで原因究明して
         int targetW = 80;
         int targetH = 80;
 
@@ -147,8 +144,6 @@ public class ProfileActivity extends AppCompatActivity {
             bmOptions.inJustDecodeBounds = true;
             BitmapFactory.decodeStream(input, null, bmOptions);
             input.close();
-
-
 
             int photoW = bmOptions.outWidth;
             int photoH = bmOptions.outHeight;
@@ -188,7 +183,6 @@ public class ProfileActivity extends AppCompatActivity {
         if (sharedPreferences.contains(SpouseEmail)) {
             returnThis = sharedPreferences.getString(SpouseEmail, "");
         }
-
         return returnThis;
     }
 }
