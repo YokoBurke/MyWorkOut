@@ -7,6 +7,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
+import android.text.Html;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.Menu;
@@ -38,8 +39,8 @@ public class MainActivity extends AppCompatActivity {
 
     private Spinner mActivitySpinner;
     private int mActivity = WorkoutContract.WorkoutEntry.ACTIVITY_RUNWALK;
-
-    private String emailMessage;
+    String selection;
+    private StringBuilder emailMessage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -96,7 +97,7 @@ public class MainActivity extends AppCompatActivity {
 
         emailIntent.putExtra(Intent.EXTRA_EMAIL, TO);
         emailIntent.putExtra(Intent.EXTRA_SUBJECT, "My Workout: " + todaysDate);
-        emailIntent.putExtra(Intent.EXTRA_TEXT, emailMessage);
+        emailIntent.putExtra(Intent.EXTRA_TEXT, Html.fromHtml(emailMessage.toString()) );
 
         try {
             //メールを起動
@@ -104,7 +105,7 @@ public class MainActivity extends AppCompatActivity {
             finish();
             Log.i("Finished sending email", "");
         } catch (android.content.ActivityNotFoundException ex) {
-            Toast.makeText(MainActivity.this, "There is no email client installed.", Toast.LENGTH_SHORT).show();;
+            Toast.makeText(MainActivity.this, "There is no email client installed.", Toast.LENGTH_SHORT).show();
         }
 
     }
@@ -133,8 +134,13 @@ public class MainActivity extends AppCompatActivity {
         values.put(WorkoutContract.WorkoutEntry.COLUMN_MESSAGE, messageString);
         values.put(WorkoutContract.WorkoutEntry.COLUMN_ACTIVITY, mActivity);
 
-        emailMessage = "This is the summary of my workout" + "\r\n"
-                + "Distance: " + distance + "miles. \r\n";
+        emailMessage = new StringBuilder();
+        emailMessage.append("<b><font color = \"#FF5733\">My Workout Summary: " + today + "</b></font><br>"
+        + "Activity: " + selection  + "<br>"
+        + "Distance: " + distance + " miles"  + "<br>"
+        + "Duration: " + duration + " minutes"  + "<br>"
+        + "Today's Weight: " + "weight" + " lbs"  + "<br>"
+        + messageString);
 
         Uri newUri = getContentResolver().insert(WorkoutContract.WorkoutEntry.CONTENT_URI, values);
         //long newRowId = db.insert(WorkoutContract.WorkoutEntry.TABLE_NAME, null, values);
@@ -181,7 +187,7 @@ public class MainActivity extends AppCompatActivity {
         mActivitySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                String selection = (String) adapterView.getItemAtPosition(i);
+                selection = (String) adapterView.getItemAtPosition(i);
                     if (!TextUtils.isEmpty(selection)) {
                         if (selection.equals("Run")) {
                             mActivity = WorkoutContract.WorkoutEntry.ACTIVITY_RUN;
