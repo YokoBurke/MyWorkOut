@@ -3,7 +3,7 @@ package com.example.android.myworkout;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.widget.TextView;
+import android.widget.ListView;
 
 import com.example.android.myworkout.data.WorkoutContract;
 import com.example.android.myworkout.data.WorkoutDbHelper;
@@ -26,11 +26,10 @@ public class CatalogActivity extends AppCompatActivity {
         displayDatabaseInfo();
     }
 
-    private void displayDatabaseInfo(){
-
-        //SQLiteDatabase db = mDbHelper.getReadableDatabase();
+    private void displayDatabaseInfo() {
 
         String[] projection = {
+                WorkoutContract.WorkoutEntry._ID,
                 WorkoutContract.WorkoutEntry.COLUMN_DATE,
                 WorkoutContract.WorkoutEntry.COLUMN_WEATHER,
                 WorkoutContract.WorkoutEntry.COLUMN_ACTIVITY,
@@ -40,64 +39,21 @@ public class CatalogActivity extends AppCompatActivity {
                 WorkoutContract.WorkoutEntry.COLUMN_MESSAGE
         };
 
-        /** Cursor cursor = db.query(
-                WorkoutContract.WorkoutEntry.TABLE_NAME,
+        Cursor cursor = getContentResolver().query(
+                WorkoutContract.WorkoutEntry.CONTENT_URI,
                 projection,
-                null, null, null, null, null);
-         */
+                null,
+                null,
+                null);
 
+        // TextView displayView = (TextView) findViewById(R.id.temporary_text);
 
-         Cursor cursor = getContentResolver().query(
-                 WorkoutContract.WorkoutEntry.CONTENT_URI,
-                    projection,
-                    null,
-                    null,
-                    null);
+        ListView listView = (ListView) findViewById(R.id.list);
+        WorkoutCursorAdapter adapter = new WorkoutCursorAdapter(this, cursor);
 
-        TextView displayView = (TextView) findViewById(R.id.temporary_text);
-
-        try {
-            displayView.setText("The workout table contains " + cursor.getCount() + " pets." + "\n\n");
-            displayView.append(WorkoutContract.WorkoutEntry.COLUMN_DATE + " - " +
-                    WorkoutContract.WorkoutEntry.COLUMN_WEATHER + " - " +
-                    WorkoutContract.WorkoutEntry.COLUMN_ACTIVITY + " - " +
-                    WorkoutContract.WorkoutEntry.COLUMN_DURATION + " - " +
-                    WorkoutContract.WorkoutEntry.COLUMN_DISTANCE + " - " +
-                    WorkoutContract.WorkoutEntry.COLUMN_WEIGHT + " - " +
-                    WorkoutContract.WorkoutEntry.COLUMN_MESSAGE + "\n");
-
-            int dateColumnIndex = cursor.getColumnIndex(WorkoutContract.WorkoutEntry.COLUMN_DATE);
-            int weatherColumnIndex = cursor.getColumnIndex(WorkoutContract.WorkoutEntry.COLUMN_WEATHER);
-            int activityColumnIndex = cursor.getColumnIndex(WorkoutContract.WorkoutEntry.COLUMN_ACTIVITY);
-            int durationColumnIndex = cursor.getColumnIndex(WorkoutContract.WorkoutEntry.COLUMN_DURATION);
-            int distanceColumnIndex = cursor.getColumnIndex(WorkoutContract.WorkoutEntry.COLUMN_DISTANCE);
-            int weightColumnIndex = cursor.getColumnIndex(WorkoutContract.WorkoutEntry.COLUMN_WEIGHT);
-            int messageColumnIndex = cursor.getColumnIndex(WorkoutContract.WorkoutEntry.COLUMN_MESSAGE);
-
-            while (cursor.moveToNext()) {
-                String currentDate = cursor.getString(dateColumnIndex);
-                String currentWeather = cursor.getString(weatherColumnIndex);
-                int currentActivity = cursor.getInt(activityColumnIndex);
-                Double currentDuration = cursor.getDouble(durationColumnIndex);
-                Double currentDistance = cursor.getDouble(distanceColumnIndex);
-                Double currentWeight = cursor.getDouble(weightColumnIndex);
-                String currentMessage = cursor.getString(messageColumnIndex);
-
-                displayView.append(("\n" + currentDate + " - " +
-                        currentWeather + " - " +
-                        currentActivity + " - " +
-                        currentDuration + " - " +
-                        currentDistance + " - " +
-                        currentWeight + " - " +
-                        currentMessage));
-             }
-            } finally {
-                cursor.close();
-                        }
-
-        }
-
-
+        listView.setAdapter(adapter);
 
     }
+
+}
 

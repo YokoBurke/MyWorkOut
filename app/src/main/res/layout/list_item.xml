@@ -7,41 +7,50 @@
     android:orientation="vertical">
 
 <LinearLayout
-    android:layout_width="match_parent"
+    android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:orientation="horizontal">
 <TextView
+    style="@style/CategoryStyle"
     android:id="@+id/list_date"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
+    android:paddingRight="8dp"
     tools:text="05/07/2018"/>
-    <TextView
-        android:id="@+id/list_weather"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        tools:text="Sunny"/>
-
 </LinearLayout>
 
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <TextView
+            android:id="@+id/list_weather_title"
+            style="@style/ListTitleStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Weather: "/>
+        <TextView
+            android:id="@+id/list_weather_content"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Sunny"/>
+
+    </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
     <TextView
-        android:id="@+id/list_activity"
+        android:id="@+id/list_activity_title"
+        style="@style/ListTitleStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        tools:text="Run and Walk"/>
-    <TextView
-        android:id="@+id/list_duration"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        tools:text="30 min"/>
-    <TextView
-        android:id="@+id/list_distance"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        tools:text="2.55 miles"/>
+        android:text="Activity: "/>
+        <TextView
+            android:id="@+id/list_activity_content"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Run and Walk"/>
+
     </LinearLayout>
 
     <LinearLayout
@@ -49,23 +58,64 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
         <TextView
+            android:id="@+id/list_distance_title"
+            style="@style/ListTitleStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Current Weight: "/>
+            android:text="Distance: "/>
         <TextView
-            android:id="@+id/list_weight"
+            android:id="@+id/list_distance_content"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            tools:text="100.05 lb"/>
+            android:text="3.5 miles"/>
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
-    <TextView
-        android:id="@+id/list_message"
-        android:layout_width="wrap_content"
+        <TextView
+            android:id="@+id/list_duration_title"
+            style="@style/ListTitleStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Duration: "/>
+        <TextView
+            android:id="@+id/list_duration_content"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="45 minues"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:text="I worked so hard today"/>
+        android:orientation="horizontal">
+        <TextView
+            android:id="@+id/list_weight_title"
+            style="@style/ListTitleStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Today's weight: "/>
+        <TextView
+            android:id="@+id/list_weight_content"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="110 lb"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <TextView
+            android:id="@+id/list_message_title"
+            style="@style/ListTitleStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Message: "/>
+        <TextView
+            android:id="@+id/list_message_content"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="I am so tired, because I worked out so much!!"/>
     </LinearLayout>
 </LinearLayout>
