@@ -3,6 +3,7 @@ package com.example.android.myworkout;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 import android.widget.ListView;
 
 import com.example.android.myworkout.data.WorkoutContract;
@@ -49,6 +50,8 @@ public class CatalogActivity extends AppCompatActivity {
         // TextView displayView = (TextView) findViewById(R.id.temporary_text);
 
         ListView listView = (ListView) findViewById(R.id.list);
+        View emptyView = findViewById(R.id.empty_view);
+        listView.setEmptyView(emptyView);
         WorkoutCursorAdapter adapter = new WorkoutCursorAdapter(this, cursor);
 
         listView.setAdapter(adapter);
