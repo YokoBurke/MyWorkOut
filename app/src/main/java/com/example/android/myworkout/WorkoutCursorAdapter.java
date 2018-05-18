@@ -53,12 +53,11 @@ public class WorkoutCursorAdapter extends CursorAdapter {
         Log.i("weightColumnIndex", Integer.toString(weightColumnIndex));
         Log.i("messageColumnIndex", Integer.toString(messageColumnIndex));
 
-        //ここの説明をもう一回きく。
         String workoutDate = cursor.getString(dateColumnIndex);
         String workoutWeather = cursor.getString(weatherColumnIndex);
         String workoutActivity = cursor.getString(activityColumnIndex);
-        String workoutDistance = cursor.getString(distanceColumnIndex) + "miles";
-        String workoutDuration = cursor.getString(durationColumnIndex) + "minutes";
+        String workoutDistance = cursor.getString(distanceColumnIndex) + " miles";
+        String workoutDuration = cursor.getString(durationColumnIndex) + " minutes";
         String workoutWeight = cursor.getString(weightColumnIndex) + " lbs";
         String workoutMessage = cursor.getString(messageColumnIndex);
 
