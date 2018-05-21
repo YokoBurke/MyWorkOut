@@ -138,7 +138,31 @@ public class WorkoutProvider extends ContentProvider {
      */
     @Override
     public int delete(Uri uri, String selection, String[] selectionArgs) {
-        return 0;
+
+        SQLiteDatabase db = mDbHelper.getWritableDatabase();
+        int rowsDeleted;
+        final int match = sUriMatcher.match(uri);
+
+        switch (match) {
+            case WORKOUT:
+                rowsDeleted = db.delete(WorkoutContract.WorkoutEntry.TABLE_NAME, selection, selectionArgs);
+                break;
+
+            case WORKOUT_ID:
+                selection = WorkoutContract.WorkoutEntry._ID + "=?";
+                selectionArgs = new String[] {String.valueOf(ContentUris.parseId(uri))};
+                rowsDeleted = db.delete(WorkoutContract.WorkoutEntry.TABLE_NAME, selection, selectionArgs);
+                break;
+
+            default:
+                throw new IllegalArgumentException("Deletion is not supported for " + uri);
+
+        }
+
+        if (rowsDeleted != 0) {
+            getContext().getContentResolver().notifyChange(uri, null);
+        }
+        return rowsDeleted;
     }
 
     /**

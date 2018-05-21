@@ -172,9 +172,19 @@ public class MainActivity extends AppCompatActivity {
                 Intent intent = new Intent(MainActivity.this, ProfileActivity.class);
                 startActivity(intent);
                 return true;
+            case R.id.action_delete_all_entries:
+                Log.v("CatalogActivity", "Mamamamama");
+                deleteAll();
+
+                return true;
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    private void deleteAll() {
+        int rowsDeleted = getContentResolver().delete(WorkoutContract.WorkoutEntry.CONTENT_URI, null, null);
+        Log.v("CatalogActivity", rowsDeleted + " " + WorkoutContract.WorkoutEntry.CONTENT_URI);
     }
 
 
