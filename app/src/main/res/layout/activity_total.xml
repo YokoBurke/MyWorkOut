@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.example.android.myworkout.TotalActivity">
+
+    <TextView
+        android:id="@+id/summary_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="My Workout Summary"/>
+
+    <TextView
+        android:id="@+id/summary_start_lb"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Starting: 125 lb"/>
+
+    <TextView
+        android:id="@+id/summary_total_distance"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Total Distance: 51 miles"/>
+
+    <TextView
+        android:id="@+id/summary_total_duration"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Total Duration: 120 minutes"/>
+
+    <TextView
+        android:id="@+id/summary_average_week"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="You are working out 3 times a week."/>
+</LinearLayout>

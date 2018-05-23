@@ -2,6 +2,7 @@ package com.example.android.myworkout;
 
 import android.content.Context;
 import android.database.Cursor;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -37,6 +38,7 @@ public class WorkoutCursorAdapter extends CursorAdapter {
         TextView textWeight = view.findViewById(R.id.list_weight_content);
         TextView textMessage = view.findViewById(R.id.list_message_content);
 
+        int idColumnIndex = cursor.getColumnIndex(WorkoutContract.WorkoutEntry._ID);
         int dateColumnIndex = cursor.getColumnIndex(WorkoutContract.WorkoutEntry.COLUMN_DATE);
         int weatherColumnIndex = cursor.getColumnIndex(WorkoutContract.WorkoutEntry.COLUMN_WEATHER);
         int activityColumnIndex = cursor.getColumnIndex(WorkoutContract.WorkoutEntry.COLUMN_ACTIVITY);
@@ -45,14 +47,7 @@ public class WorkoutCursorAdapter extends CursorAdapter {
         int weightColumnIndex = cursor.getColumnIndex(WorkoutContract.WorkoutEntry.COLUMN_WEIGHT);
         int messageColumnIndex = cursor.getColumnIndex(WorkoutContract.WorkoutEntry.COLUMN_MESSAGE);
 
-        Log.i("dateColumnIndex", Integer.toString(dateColumnIndex));
-        Log.i("weatherColumnIndex", Integer.toString(weatherColumnIndex));
-        Log.i("activityColumnIndex", Integer.toString(activityColumnIndex));
-        Log.i("distanceColumnIndex", Integer.toString(distanceColumnIndex));
-        Log.i("durationColumnIndex", Integer.toString(durationColumnIndex));
-        Log.i("weightColumnIndex", Integer.toString(weightColumnIndex));
-        Log.i("messageColumnIndex", Integer.toString(messageColumnIndex));
-
+        String workoutID = cursor.getString(idColumnIndex);
         String workoutDate = cursor.getString(dateColumnIndex);
         String workoutWeather = cursor.getString(weatherColumnIndex);
         String workoutActivity = cursor.getString(activityColumnIndex);
@@ -61,6 +56,10 @@ public class WorkoutCursorAdapter extends CursorAdapter {
         String workoutWeight = cursor.getString(weightColumnIndex) + " lbs";
         String workoutMessage = cursor.getString(messageColumnIndex);
 
+        if (TextUtils.isEmpty(workoutMessage)) {
+            workoutMessage = context.getString(R.string.no_message);
+        }
+
         textDate.setText(workoutDate);
         textWeather.setText(workoutWeather);
         textActivity.setText(workoutActivity);
@@ -68,6 +67,8 @@ public class WorkoutCursorAdapter extends CursorAdapter {
         textDuration.setText(workoutDuration);
         textWeight.setText(workoutWeight);
         textMessage.setText(workoutMessage);
+
+        Log.i("Number _ID", workoutID);
 
     }
 }

@@ -17,4 +17,7 @@
     <string name="activity_runandwalk">Run and Walk</string>
 
     <string name="empty_title_text">You have not entered any data yet.</string>
+
+    <string name="no_message">No message submitted.</string>
+
 </resources>

@@ -175,7 +175,10 @@ public class MainActivity extends AppCompatActivity {
             case R.id.action_delete_all_entries:
                 Log.v("CatalogActivity", "Mamamamama");
                 deleteAll();
-
+                return true;
+            case R.id.action_total:
+                Intent totalIntent = new Intent(MainActivity.this, TotalActivity.class);
+                startActivity(totalIntent);
                 return true;
         }
 
