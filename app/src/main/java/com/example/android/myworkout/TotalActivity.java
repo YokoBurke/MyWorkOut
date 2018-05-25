@@ -4,7 +4,6 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.widget.TextView;
 
 import com.example.android.myworkout.data.WorkoutDbHelper;
@@ -41,10 +40,8 @@ public class TotalActivity extends AppCompatActivity {
         Cursor cursor = db.rawQuery("SELECT SUM(" + columnName + ") FROM WorkoutTable", null);
 
         if (cursor.moveToFirst()){
-            Log.i("sumDistanceDuration", cursor.getString(0));
             return cursor.getDouble(0);
         } else {
-            Log.i("sumDistanceDuration", "0.00");
             return 0.00;
         }
 
