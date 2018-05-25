@@ -37,6 +37,8 @@ public class ProfileActivity extends AppCompatActivity {
     private ImageView mImageProfile;
 
     private static final int PICK_IMAGE_REQUEST = 0;
+
+    private static final String STATE_URI = "STATE_URI";
     private Uri mUriPic;
 
     @Override
@@ -50,6 +52,8 @@ public class ProfileActivity extends AppCompatActivity {
         mWeightProfile = (EditText) findViewById(R.id.weight_profile);
         mImageProfile = (ImageView) findViewById(R.id.pic_profile);
 
+
+
        sharedPreferences = getSharedPreferences(MyPreferences, Context.MODE_PRIVATE);
 
         if (sharedPreferences.contains(Name)) {
@@ -59,11 +63,12 @@ public class ProfileActivity extends AppCompatActivity {
             mWeightProfile.setText(sharedPreferences.getString(MyGoal, ""));
 
             String getURI = (sharedPreferences.getString(MyPic, ""));
-           // mImageProfile.setImageBitmap(getBitmapFromUri(Uri.parse(getURI)));
+            mImageProfile.setImageURI(Uri.parse(getURI));
+
 
         }
 
-
+        mUriPic = Uri.parse(sharedPreferences.getString(MyPic, ""));
 
         final Button mUpdatePic = (Button) findViewById(R.id.browse_pic_profile);
         mUpdatePic.setOnClickListener(new View.OnClickListener() {
@@ -95,6 +100,7 @@ public class ProfileActivity extends AppCompatActivity {
 
         });
     }
+
 
     public void openImageSelector() {
         Intent intent;
@@ -156,7 +162,6 @@ public class ProfileActivity extends AppCompatActivity {
             input = this.getContentResolver().openInputStream(uri);
             Bitmap bitmap = BitmapFactory.decodeStream(input, null, bmOptions);
 
-            Log.i(LOG_TAG, "I got this far 1");
 
             input.close();
             return bitmap;

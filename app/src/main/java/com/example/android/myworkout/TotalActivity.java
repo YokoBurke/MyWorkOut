@@ -31,8 +31,8 @@ public class TotalActivity extends AppCompatActivity {
         TextView distanceView = (TextView) findViewById(R.id.summary_total_distance);
         TextView durationView = (TextView) findViewById(R.id.summary_total_duration);
 
-        distanceView.setText(Double.toString(y));
-        durationView.setText(Double.toString(x));
+        distanceView.setText(Double.toString(y) + " miles");
+        durationView.setText(Double.toString(x) + " minutes");
 
     }
 
