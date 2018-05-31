@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorBackground"
     android:orientation="vertical"
     tools:context="com.example.android.myworkout.TotalActivity">
 
@@ -11,30 +13,164 @@
         android:id="@+id/summary_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="My Workout Summary"/>
+        android:layout_gravity="center"
+        android:paddingBottom="40dp"
+        android:paddingTop="40dp"
+        android:text="My Workout Summary"
+        android:textColor="@android:color/black"
+        android:textSize="28sp"
+        android:textStyle="bold" />
 
-    <TextView
-        android:id="@+id/summary_start_lb"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Starting: 125 lb"/>
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:paddingBottom="30dp">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                style="@style/TotalStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="Starting" />
+
+            <TextView
+                android:id="@+id/starting_total"
+                style="@style/TotalSubStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="220 lbs" />
+
+        </LinearLayout>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:src="@drawable/baseline_arrow_forward_black_48" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                style="@style/TotalStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="Goal" />
+
+            <TextView
+                android:id="@+id/goal_total"
+                style="@style/TotalSubStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="180 lbs" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:paddingLeft="25dp"
+        android:paddingRight="25dp">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                style="@style/TotalStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="5dp"
+                android:text="First Workout Date" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/baseline_calendar_today_black_24" />
+
+                <TextView
+                    style="@style/TotalSubStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="5dp"
+                    android:text="5/10/2018" />
+            </LinearLayout>
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingLeft="24dp">
+
+            <TextView
+                style="@style/TotalStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="5dp"
+                android:text="Total Distance" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/baseline_map_black_24" />
+
+                <TextView
+                    style="@style/TotalSubStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="5dp"
+                    android:text="10 miles" />
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+
 
     <TextView
         android:id="@+id/summary_total_distance"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Total Distance: 51 miles"/>
+        android:text="Total Distance: 51 miles" />
 
     <TextView
         android:id="@+id/summary_total_duration"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Total Duration: 120 minutes"/>
+        android:text="Total Duration: 120 minutes" />
 
     <TextView
         android:id="@+id/summary_average_week"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="You are working out 3 times a week."/>
+        android:text="You are working out 3 times a week." />
+
 
 </LinearLayout>
