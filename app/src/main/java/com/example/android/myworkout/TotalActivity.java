@@ -1,5 +1,6 @@
 package com.example.android.myworkout;
 
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.DatabaseUtils;
 import android.database.sqlite.SQLiteDatabase;
@@ -22,19 +23,26 @@ public class TotalActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_total);
 
+        SharedPreferences thisSharedPreferences = getApplication().getSharedPreferences("MyPrefs", MODE_PRIVATE);
+        String myWeightGoal = thisSharedPreferences.getString("goalKey", "");
+
         mDbHelper = new WorkoutDbHelper(this);
 
         TextView distanceView = findViewById(R.id.summary_total_distance);
         TextView durationView = findViewById(R.id.summary_total_duration);
         TextView averageView = findViewById(R.id.summary_average_week);
+        TextView firstdayView = findViewById(R.id.summary_total_firstday);
+        TextView weightGoalView = findViewById(R.id.goal_total);
 
         double x = sumDistanceDuration("distance");
         double y = sumDistanceDuration("duration");
 
         distanceView.setText(Double.toString(x) + " miles");
         durationView.setText(Double.toString(y) + " minutes");
+        weightGoalView.setText(myWeightGoal + " lbs");
 
         getDates();
+        firstdayView.setText(startDate);
         averageView.setText(startDate + " " + lastDate + " " + workoutCount);
 
     }

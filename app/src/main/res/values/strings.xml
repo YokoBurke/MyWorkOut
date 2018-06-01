@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">My Walk Tracker</string>
+    <string name="app_name">My Workout Tracker</string>
 
     <string name="message_1">Are you having a great day?</string>
     <string name="message_2">I think the dinner tonight should be Tonkatsu!</string>

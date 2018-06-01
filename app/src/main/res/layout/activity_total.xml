@@ -97,6 +97,7 @@
                 style="@style/TotalStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
                 android:paddingLeft="5dp"
                 android:text="First Workout Date" />
 
@@ -111,6 +112,7 @@
                     android:src="@drawable/baseline_calendar_today_black_24" />
 
                 <TextView
+                    android:id="@+id/summary_total_firstday"
                     style="@style/TotalSubStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -131,6 +133,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:paddingLeft="5dp"
+                android:layout_gravity="center"
                 android:text="Total Distance" />
 
             <LinearLayout
@@ -144,6 +147,7 @@
                     android:src="@drawable/baseline_map_black_24" />
 
                 <TextView
+                    android:id="@+id/summary_total_distance"
                     style="@style/TotalSubStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -154,23 +158,81 @@
     </LinearLayout>
 
 
-    <TextView
-        android:id="@+id/summary_total_distance"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Total Distance: 51 miles" />
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:paddingLeft="25dp"
+        android:paddingRight="25dp">
 
-    <TextView
-        android:id="@+id/summary_total_duration"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Total Duration: 120 minutes" />
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/summary_average_week"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="You are working out 3 times a week." />
+            <TextView
+                style="@style/TotalStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:paddingLeft="5dp"
+                android:text="Total Duration" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/baseline_timer_black_24" />
+
+                <TextView
+                    android:id="@+id/summary_total_duration"
+                    style="@style/TotalSubStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="5dp"
+                    android:text="260 min." />
+            </LinearLayout>
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingLeft="24dp">
+
+            <TextView
+                style="@style/TotalStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="5dp"
+                android:layout_gravity="center"
+                android:text="Average/week" />
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/outline_poll_black_24" />
+
+                <TextView
+                    android:id="@+id/summary_average_week"
+                    style="@style/TotalSubStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="5dp"
+                    android:text="3 times/wk" />
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
 
 
 </LinearLayout>
