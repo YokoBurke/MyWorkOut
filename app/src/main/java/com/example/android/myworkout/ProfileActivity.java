@@ -46,11 +46,11 @@ public class ProfileActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
 
-        mNameProfile = findViewById(R.id.name_profile);
-        mSpouseProfile = findViewById(R.id.spouse_profile);
-        mSpouseEmailProfile = findViewById(R.id.spouse_email_profile);
-        mWeightProfile = findViewById(R.id.weight_profile);
-        mImageProfile = findViewById(R.id.pic_profile);
+        mNameProfile = (EditText) findViewById(R.id.name_profile);
+        mSpouseProfile = (EditText)findViewById(R.id.spouse_profile);
+        mSpouseEmailProfile = (EditText)findViewById(R.id.spouse_email_profile);
+        mWeightProfile = (EditText) findViewById(R.id.weight_profile);
+        mImageProfile = (ImageView) findViewById(R.id.pic_profile);
 
 
 
@@ -72,7 +72,7 @@ public class ProfileActivity extends AppCompatActivity {
 
         mUriPic = Uri.parse(sharedPreferences.getString(MyPic, ""));
 
-        final Button mUpdatePic = findViewById(R.id.browse_pic_profile);
+        final Button mUpdatePic = (Button) findViewById(R.id.browse_pic_profile);
         mUpdatePic.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -80,7 +80,7 @@ public class ProfileActivity extends AppCompatActivity {
             }
         });
 
-        Button mUpdateProfile = findViewById(R.id.updte_profile);
+        Button mUpdateProfile = (Button) findViewById(R.id.updte_profile);
         mUpdateProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v){

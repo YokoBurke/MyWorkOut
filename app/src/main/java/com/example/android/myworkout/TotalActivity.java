@@ -28,11 +28,11 @@ public class TotalActivity extends AppCompatActivity {
 
         mDbHelper = new WorkoutDbHelper(this);
 
-        TextView distanceView = findViewById(R.id.summary_total_distance);
-        TextView durationView = findViewById(R.id.summary_total_duration);
-        TextView averageView = findViewById(R.id.summary_average_week);
-        TextView firstdayView = findViewById(R.id.summary_total_firstday);
-        TextView weightGoalView = findViewById(R.id.goal_total);
+        TextView distanceView = (TextView) findViewById(R.id.summary_total_distance);
+        TextView durationView = (TextView) findViewById(R.id.summary_total_duration);
+        TextView averageView = (TextView) findViewById(R.id.summary_average_week);
+        TextView firstdayView = (TextView) findViewById(R.id.summary_total_firstday);
+        TextView weightGoalView = (TextView) findViewById(R.id.goal_total);
 
         double x = sumDistanceDuration("distance");
         double y = sumDistanceDuration("duration");
