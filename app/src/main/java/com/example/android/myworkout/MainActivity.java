@@ -68,7 +68,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 insertWokoutData();
-                sendEmail();
+
 
             }
         } );
@@ -111,47 +111,61 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void insertWokoutData(){
+
         String weightString = mWegithEditText.getText().toString().trim();
         String distanceString = mDistanceEditText.getText().toString().trim();
         String durationString = mDurationEditText.getText().toString().trim();
         String messageString = mMessageEditText.getText().toString().trim();
 
-        double weight = Double.parseDouble(weightString);
-        double duration = Double.parseDouble(durationString);
-        double distance = Double.parseDouble(distanceString);
+        if (TextUtils.isEmpty(weightString) ||
+                TextUtils.isEmpty(distanceString) ||
+                TextUtils.isEmpty(durationString)) {
+            Toast.makeText(MainActivity.this, "EditText is Empty", Toast.LENGTH_LONG).show();
 
-        DateFormat todayFormat = new SimpleDateFormat("MM/dd/yyyy");
-        String today = todayFormat.format(currentTime);
 
-        //WorkoutDbHelper mDbHelper = new WorkoutDbHelper(this);
-        //SQLiteDatabase db = mDbHelper.getWritableDatabase();
 
-        ContentValues values = new ContentValues();
-        values.put(WorkoutContract.WorkoutEntry.COLUMN_DATE, today);
-        values.put(WorkoutContract.WorkoutEntry.COLUMN_WEIGHT, weight);
-        values.put(WorkoutContract.WorkoutEntry.COLUMN_DISTANCE, distance);
-        values.put(WorkoutContract.WorkoutEntry.COLUMN_DURATION, duration);
-        values.put(WorkoutContract.WorkoutEntry.COLUMN_MESSAGE, messageString);
-        values.put(WorkoutContract.WorkoutEntry.COLUMN_ACTIVITY, mActivity);
-
-        emailMessage = new StringBuilder();
-        emailMessage.append("<b><font color = \"#FF5733\">My Workout Summary: " + today + "</b></font><br>"
-        + "Activity: " + selection  + "<br>"
-        + "Distance: " + distance + " miles"  + "<br>"
-        + "Duration: " + duration + " minutes"  + "<br>"
-        + "Today's Weight: " + "weight" + " lbs"  + "<br>"
-        + messageString);
-
-        Uri newUri = getContentResolver().insert(WorkoutContract.WorkoutEntry.CONTENT_URI, values);
-        //long newRowId = db.insert(WorkoutContract.WorkoutEntry.TABLE_NAME, null, values);
-
-        // Show a toast message depending on whether or not the insertion was successful
-        if (newUri == null) {
-            // If the row ID is -1, then there was an error with insertion.
-            Toast.makeText(this, "Error with saving data", Toast.LENGTH_SHORT).show();
         } else {
-            // Otherwise, the insertion was successful and we can display a toast with the row ID.
-            Toast.makeText(this, "Your workout data is saved", Toast.LENGTH_SHORT).show();
+
+            double weight = Double.parseDouble(weightString);
+            double duration = Double.parseDouble(durationString);
+            double distance = Double.parseDouble(distanceString);
+
+            DateFormat todayFormat = new SimpleDateFormat("MM/dd/yyyy");
+            String today = todayFormat.format(currentTime);
+
+            //WorkoutDbHelper mDbHelper = new WorkoutDbHelper(this);
+            //SQLiteDatabase db = mDbHelper.getWritableDatabase();
+
+            ContentValues values = new ContentValues();
+            values.put(WorkoutContract.WorkoutEntry.COLUMN_DATE, today);
+            values.put(WorkoutContract.WorkoutEntry.COLUMN_WEIGHT, weight);
+            values.put(WorkoutContract.WorkoutEntry.COLUMN_DISTANCE, distance);
+            values.put(WorkoutContract.WorkoutEntry.COLUMN_DURATION, duration);
+            values.put(WorkoutContract.WorkoutEntry.COLUMN_MESSAGE, messageString);
+            values.put(WorkoutContract.WorkoutEntry.COLUMN_ACTIVITY, mActivity);
+
+            emailMessage = new StringBuilder();
+            emailMessage.append("<b><font color = \"#FF5733\">My Workout Summary: " + today + "</b></font><br>"
+                    + "Activity: " + selection + "<br>"
+                    + "Distance: " + distance + " miles" + "<br>"
+                    + "Duration: " + duration + " minutes" + "<br>"
+                    + "Today's Weight: " + "weight" + " lbs" + "<br>"
+                    + messageString);
+
+            Uri newUri = getContentResolver().insert(WorkoutContract.WorkoutEntry.CONTENT_URI, values);
+            //long newRowId = db.insert(WorkoutContract.WorkoutEntry.TABLE_NAME, null, values);
+
+            // Show a toast message depending on whether or not the insertion was successful
+            if (newUri == null) {
+                // If the row ID is -1, then there was an error with insertion.
+                Toast.makeText(this, "Error with saving data", Toast.LENGTH_SHORT).show();
+            } else {
+                // Otherwise, the insertion was successful and we can display a toast with the row ID.
+                Toast.makeText(this, "Your workout data is saved", Toast.LENGTH_SHORT).show();
+            }
+
+            sendEmail();
+
         }
 
     }
